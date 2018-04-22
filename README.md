@@ -12,5 +12,5 @@ Side note 3: To get excited, you can watch [a boring gameplay](https://www.youtu
 
 Tools: Phaser as framework, GIMP for sprites, “music” by fiddling with WolframTones.
 
-A game made for LD41.
+A game made for [LD41](https://ldjam.com/events/ludum-dare/41/asm-hell).
 
