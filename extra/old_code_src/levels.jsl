@@ -1,0 +1,587 @@
+var levels_obj = {
+    levels: [
+        function() { // #0
+            return {
+                map: [
+                    '........................',
+                    '........................',
+                    '........................',
+                    '........................',
+                    '........................',
+                    '.........wwwwwww........',
+                    '.........w....Gw........',
+                    '.........w....ww........',
+                    '.........w.wwww.........',
+                    '.........w.w............',
+                    '.........wPw............',
+                    '.........www............',
+                    '........................',
+                    '........................',
+                    '........................',
+                    '........................',
+                    '........................',
+                ],
+                entities: {},
+                solution: ['MOVE -3 0'],
+            };
+        },
+
+        // 'wwwwwwwwwwwwwwwwwwwwwwww',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w.............G........w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w.........P............w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'w......................w',
+        // 'wwwwwwwwwwwwwwwwwwwwwwww',
+        function() { // #1
+            return {
+                map: [
+                    'wwwwwwwwwwwwwwwwwwwwwwww',
+                    'wP.....................w',
+                    'wwwwwwwwwwwwwwwwwwwwww.w',
+                    'w..w......w..........w.w',
+                    'w..w.ww.w...wwwww.w.ww.w',
+                    'w.....w...ww....www....w',
+                    'w.ww..w...w..wG.wwwww.ww',
+                    'w...w.w...w..w..w...w..w',
+                    'w...w.w.wwww.www....ww.w',
+                    'w.....w.w....w..w....w.w',
+                    'w.wwwww.w.www...ww.www.w',
+                    'w...w.w.w..w....w......w',
+                    'w...w.w.ww.w.ww.w.wwww.w',
+                    'w...w.w..w.w.........w.w',
+                    'w...w.w..w.wwwwwwwwwww.w',
+                    'w......................w',
+                    'wwwwwwwwwwwwwwwwwwwwwwww',
+                ],
+                entities: {},
+                solution: ['MOVE 21 1', 'MOVE 4 0'],
+            };
+        },
+        function() { // #2
+            var res = {
+                map: [
+                    'wwwwwwwwwwwwwwwwwwwwwwww',
+                    'w......................w',
+                    'w......................w',
+                    'w................w.....w',
+                    'w....www........w.ww...w',
+                    'w...w.P.wwwwwwww.!..w..w',
+                    'w...w..............w...w',
+                    'w...ww.............w...w',
+                    'w.....ww...........w...w',
+                    'w.......ww......w@ww...w',
+                    'w.........ww...w...w...w',
+                    'w...........ww.w.G.w...w',
+                    'w.............w.www....w',
+                    'w......................w',
+                    'w......................w',
+                    'w......................w',
+                    'wwwwwwwwwwwwwwwwwwwwwwww',
+                ],
+                entities: {
+                    '@': {type: 'door', key: '17'},
+                    '!': {type: 'value', value: '17'},
+                    '^': {type: 'text', text: 'Level values change every time you run your program'},
+                },
+                total_trials: 3,
+                solution: ['','', '', 'READ [5]', 'MOVE 3 0'], 
+            };
+            res.entities['@'].key = res.entities['!'].value = getRandomIntGame();
+            return res;
+        },
+        function() { // #3
+            var res = {
+                map: [
+                    'wwwwwwwwwwwwwwwwwwwww....',
+                    'w.........P.........w....',
+                    'w...................w....',
+                    'w........(.)........w....',
+                    '.wwwwwwwww@wwwwwwwww..1..',
+                    '...w.............w.......',
+                    '...w.............w.......',
+                    '...w.............w.......',
+                    '....wwwwww!wwwwww.....2..',
+                    '........w...w............',
+                    '........w...w............',
+                    '........w...w............',
+                    '.........w#w..........3..',
+                    '.........w.w.............',
+                    '.........w.w.............',
+                    '.........wGw.............',
+                    '..........w..............',
+                    '.........................',
+                ],
+                entities: {
+                    '@': {type: 'door', key: '17'},
+                    '!': {type: 'door', key: '17'},
+                    '#': {type: 'door', key: '17'},
+                    '1': {type: 'text', text: '17'},
+                    '2': {type: 'text', text: '17'},
+                    '3': {type: 'text', text: '17'},
+                    '(': {type: 'value', value: '17'},
+                    ')': {type: 'value', value: '17'},
+                },
+                total_trials: 3,
+                solution: [],
+            };
+            var a = getRandomInt(1,10);
+            var b = getRandomInt(1,9);
+            res.entities[')'].value = b;
+            res.entities['('].value = a;
+            res.entities['@'].key = a+b;
+            res.entities['1'].text = '< ' +(a+b).toString();
+            res.entities['!'].key = a-b;
+            res.entities['2'].text = '< ' + (a-b).toString();
+            res.entities['#'].key = a*b;
+            res.entities['3'].text = '< ' + (a*b).toString();
+            return res;
+        },
+        function() { // #4
+            return {
+                map: [
+                    '.........wwwwww.........',
+                    '.........w...Pw.........',
+                    '.........w.wwww.........',
+                    '.........w....w.........',
+                    '.........wwww.w.........',
+                    '.........w....w.........',
+                    '.........w.wwww.........',
+                    '.........w....w.........',
+                    '.........wwww.w.........',
+                    '.........w....w.........',
+                    '.........w.wwww.........',
+                    '.........w....w.........',
+                    '.........wwww.w.........',
+                    '.........w....w.........',
+                    '.........w.wwww.........',
+                    '.........w...Gw.........',
+                    '.........wwwwww.........',
+                ],
+                entities: {},
+                max_lines: 10,
+                solution: ['', '', 'JMP 8'],
+            };
+        },
+        function() { // #5
+            var res = {
+                map: [
+                    '.wwwwwwwwwwwwwwwwwwwwww..',
+                    '.w.t.................w...',
+                    '.w.wwwwwwwwwwwwwwwwwww...',
+                    '.w.t...............w.....',
+                    '.w.wwwwwwwwwwwwwwwww.....',
+                    '.w.t.............w.......',    
+                    '.w.wwwwwwwwwwwwwww.......',
+                    '.w.t...........w.........',
+                    '.w.wwwwwwwwwwwww.........',
+                    '.w.t.........w...........',
+                    '.w.wwwwwwwwwww...........',
+                    '.w.t.......w.............',
+                    '.w.wwwwwwwww.............',
+                    '.w.t.....w...............',
+                    '.w.wwwwwww...............',
+                    '.w1...Pw.................',
+                    '.wwwwwww.................',
+                ],
+                entities: {
+                    '1': {type:'value', value:17},
+                },
+                solution: [''],
+                total_trials: 5,
+            };
+            var a = getRandomInt(1,7);
+            console.log(a);
+            res.map[15-2*a] = res.map[15-2*a].replaceAt(3, '.');
+            res.map[15-2*a] = res.map[15-2*a].replaceAt(6+2*a, 'G');
+            res.entities['1'].value = a;
+            
+            return res;
+        },
+
+        function() { // #6
+            var res= {
+                map: [
+                    '.........wwwww...........',
+                    '........w..P..w...(......',
+                    '.......w.......w..)......',
+                    '......w.........w........',
+                    '.....w...........w.......',
+                    '....w.............w......',
+                    '...w...............w.....',
+                    '..w........1........w....',
+                    '.www.www.w...w.www.www...',
+                    'ww.w.w.wwwwwwwww.w.w.ww..',
+                    'w.......w.....w...t...w..',
+                    'w................t.t..w..',
+                    'w.......w.....w...t...w..',
+                    'ww.....www...www......w..',
+                    '.ww...ww.ww.ww.ww...ww...',
+                    '..wwGww...www...wwtww....',
+                    '.........................',
+                ],
+                entities: {
+                    '1': {type: 'value', value: '1'},
+                    '(': {type: 'text', text: '47 - go left'},
+                    ')': {type: 'text', text: '48 - go right'},
+                },
+                solution: ['', '', 'JMPZ 7 [0]'],
+                total_trials: 10,
+            };
+            var a = getRandomInt(0,1);
+            res.entities['1'].value = a+47;
+            if(a == 1) { 
+                res.map[10] = res.map[10].replaceAt(4,  't').replaceAt(18,'.');
+                res.map[11] = res.map[11].replaceAt(5,  't').replaceAt(17,'.');
+                res.map[11] = res.map[11].replaceAt(3,  't').replaceAt(19, '.');
+                res.map[12] = res.map[12].replaceAt(4,  't').replaceAt(18,'.');
+                res.map[15] = res.map[15].replaceAt(4,  't').replaceAt(18,'G');
+            }
+            return res;
+        },
+        function() { // #7
+            var res = {
+                map: [
+                    '..............w...............',
+                    '............ww.ww.............',
+                    '............w.2.w.............',
+                    '.............w.w..............',
+                    '.............w.w..............',
+                    '.............w.w..............',
+                    '.......ww....w.w....ww........',
+                    '.......w.wwwww.wwwww.w........',
+                    '......w.1.....P.....3.w.......',
+                    '.......w.wwwww.wwwww.w........',
+                    '.......ww....w.w....ww........',
+                    '.............w#w..............',
+                    '.^...........w.w..............',
+                    '.............w.w..............',
+                    '............w.G.w.............',
+                    '............ww.ww.............',
+                    '..............w...............',
+                ],
+                entities: {
+                    '#': {type: 'door', key: '17'},
+                    '1': {type: 'value', value: '17'},
+                    '2': {type: 'value', value: '17'},
+                    '3': {type: 'value', value: '17'},
+                    '^': {type: 'text', text: '(2a+b*(a-c)^2)*2+3'},
+                },
+                solution: [],
+                
+            };
+            var a = 999; var b = 999; var c = 999;
+            while(((2*a+b*(a-c)*(a-c))*2+3) > 99 || ((2*a+b*(a-c)*(a-c))*2+3) < -99) {
+                a = getRandomIntGame();
+                b = getRandomIntGame();
+                c = getRandomIntGame();
+            }
+            res.entities['1'].value = a;
+            res.entities['2'].value = b;
+            res.entities['3'].value = c;
+            res.entities['#'].key = ((2*a+b*(a-c)*(a-c))*2+3);
+            return res;
+        },
+        function() { // #8
+            var res = {
+                map: [
+                    '...........www.............',
+                    '..........w...w............',
+                    '.........w.....w...........',
+                    '........w...P...w..........',
+                    '.........w.....w...........',
+                    '..........w...w............',
+                    '...........w.w.............',
+                    '...wwwwwwwww.wwwwwwwww.....',
+                    '..w.......1...2.......w....',
+                    '...wwwwwwwww#wwwwwwwww.....',
+                    '...........w.w.............',
+                    '..........w...w............',
+                    '.........w.....w...........',
+                    '........w...G...w..........',
+                    '.........w.....w...........',
+                    '..........w...w............',
+                    '...........www.............',
+                ],
+                entities: {
+                    '#': {type: 'door', key: '17'},
+                    '1': {type: 'value', value: '17'},
+                    '2': {type: 'value', value: '17'},
+                },
+                solution: [''],
+                total_trials: 5,
+            };
+            var a = getRandomInt(2,90);
+            var b = getRandomInt(2,90);
+            while(a*b > GAME_MAX_INT || b > GAME_MAX_INT) {
+                a = getRandomInt(2,90);
+                b = getRandomInt(2,90);
+            }
+
+            res.entities['1'].value = a*b;
+            res.entities['2'].value = b;
+            res.entities['#'].key = a;
+            return res;
+        },
+        function() { // #9 TODO: popup: 'ever heard of function calls'
+            var res = {
+                map: [
+                    '.......wwwwwwwwwwwww........',
+                    '.w.....w...........w.....w..',
+                    'ww.....w..w..P..w..w.....ww.',
+                    '.ww....w...........w....ww..',
+                    '..ww...wwwwww1wwwwww...ww...',
+                    '...ww.......w#w.......ww....',
+                    '....ww..wwwww.wwwww..ww.....',
+                    '.....wwww......2..wwww......',
+                    '.......wwwwwwww@wwww........',
+                    '........w......3..w.........',
+                    '........wwwwwww!www.........',
+                    '........w......G..w.........',
+                    '........wwwwwwwwwww.........',
+                    '..........w.....w...........',
+                    '..........w.....w...........',
+                    '..........w.....w..%........',
+                    '.........ww....ww...........',
+                ],
+                entities: {
+                    '@': {type: 'door', key: '17'},
+                    '!': {type: 'door', key: '17'},
+                    '#': {type: 'door', key: '17'},
+                    '1': {type: 'value', value: '17'},
+                    '2': {type: 'value', value: '17'},
+                    '3': {type: 'value', value: '17'},
+                    '%': {type: 'text', text: '2x*x-3x+7'},
+                },
+                solution: [],
+                total_trials: 5,
+            };
+            var a = getRandomIntGame();
+            var b = getRandomIntGame();
+            var c = getRandomIntGame();
+            while(2*a*a-3*a+7 > 99 || 2*a*a-3*a+7 < -99) a = getRandomIntGame();
+            while(2*b*b-3*b+7 > 99 || 2*b*b-3*b+7 < -99) b = getRandomIntGame();
+            while(2*c*c-3*c+7 > 99 || 2*c*c-3*c+7 < -99) c = getRandomIntGame();
+            res.entities['1'].value = a;
+            res.entities['2'].value = b;
+            res.entities['3'].value = c;
+
+            res.entities['#'].key = 2*a*a-3*a+7;
+            res.entities['@'].key = 2*b*b-3*b+7;
+            res.entities['!'].key = 2*c*c-3*c+7;
+            return res;
+        },
+        function() { // #10
+            var res = {
+                map: [
+                    '........................',
+                    '........................',
+                    '........................',
+                    '.................www....',
+                    '................ww.ww...',
+                    '...............ww...ww..',
+                    '..............ww.....ww.',
+                    '.wwwwwwwwwwwwwww......w.',
+                    '.wP...........6#..G...w.',
+                    '..ww0123www4.5ww.....ww.',
+                    '...www.ww.wwww.ww...ww..',
+                    '.....www...w.w..ww.ww...',
+                    '.................www....',
+                    '........................',
+                    '........................',
+                    '........................',
+                    '........................',
+                ],
+                entities: {
+                    '#': {type: 'door', key: '17'},
+                    '0': {type: 'value', value: '17'},
+                    '1': {type: 'value', value: '17'},
+                    '2': {type: 'value', value: '17'},
+                    '3': {type: 'value', value: '17'},
+                    '4': {type: 'value', value: '17'},
+                    '5': {type: 'value', value: '17'},
+                    '6': {type: 'value', value: '17'},
+                },
+                solution: [], 
+                total_trials: 5
+
+            };
+            res.entities['0'].value = getRandomIntGame();
+            res.entities['1'].value = getRandomIntGame();
+            res.entities['2'].value = getRandomIntGame();
+            res.entities['3'].value = getRandomIntGame();
+            res.entities['4'].value = getRandomIntGame();
+            res.entities['5'].value = getRandomIntGame();
+            res.entities['6'].value = getRandomInt(0,5);
+            res.entities['#'].key = res.entities[(res.entities['6'].value).toString()].value;
+
+            return res;
+        },
+        // CRIT TODO: read from move register, find value (-1 if none found)
+        function() { // 11
+            var res= {
+                map: [
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '.......t........t.........',
+                    '.......t........t.........',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '..w..................w....',
+                    '.wGw................wtw...',
+                    '.w#wwwwwwwwwwwwwwwwww.w...',
+                    '.wP...................w...',
+                    '..wwwwwwwwwwwwwwwwwwww....',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                ],
+                solution: [],
+                entities: {
+                    '#': {type: 'door', key: '17'},
+                },
+            };
+            var a = getRandomInt(0,18);
+            res.map[13] = res.map[13].replaceAt(3+a,  'w');
+            console.log(a);
+            res.entities['#'].key = a;
+            return res;
+        },
+        function() { // 12
+            var res = {
+                map: [
+                    '..........................',
+                    '..........................',
+                    '..%.......................',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '...........w...............',
+                    '..........wPw..............',
+                    '.........wt1Gw.............',
+                    '..........www..............',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                    '..........................',
+                ],
+                entities: {
+                    '%': {type: 'text', text: 'go right if the number is prime,\nleft otherwise'},
+                    '1': {type: 'value', value: '17'},
+                    /* 't': {type:'trap'}, FOR BACKUP */
+                },
+                solution: [''],
+                total_trials: 5,
+            };
+            var a = getRandomInt(2, GAME_MAX_INT/2);
+            if(getRandomInt(0,4) == 0)
+                while(!isPrime(a))
+                    a = getRandomInt(2, GAME_MAX_INT/2);
+            res.entities['1'].value = a;
+            if(!isPrime(a)) // TODO: make prime numbers more probable
+                res.map[8] = res.map[8].replaceAt(10, 'G').replaceAt(12, 't'); // TODO: shouldnt this be the other way around?
+            return res;
+        },
+    ],
+    popup: [ // I honestly don't know why this isn't in the level object, but I'm too tired to refactor now
+        // #0
+        'Get to the ladder as fast as you can\n' +
+        'In this level it is recommended to use the \n' +
+        'instruction \'MOVE A1 A2\'\n' +
+        '   A1 is the amount of steps (can be negative)\n' + 
+        '   A2 is the direction \n' + 
+        '    (1 for horizontal, 0 for vertical) \n' + 
+        'See the example. Write your code.\n' +
+        'Click `RUN`. Cry. Debug. Succeed.',
+        // #1
+        'Practice. It\'s all about the direction',
+        // #2
+        'Sometimes your goal is locked behind a door.\n' +
+        'Recommended instructions: \'UNLOCK A1\', \'READ A2\'\n' +
+        '   A1 is the key for the door\n' +
+        '     (door must be adjacent to use UNLOCK)\n' + 
+        '   M1 stores the loaded value\n' +
+        '     (you must be standing on the tile to use READ) \n' + 
+        'Warning: each door gives you only one attempt to\n' +
+        'unlocking it. Brute force will result in CPU halt.',
+        // #3
+        'After you\'ve loaded some values into registers\n' +
+        'you can do arithmetic operations on them, such as\n' +
+        'ADD M1 A1 A2 (this stores the result of A1+A2 to \n' +
+        'register M1).\nOther operations are: SUB, MUL',
+        // #4
+        'Sometimes you can\'t script everything. Use\n' +
+        'the instruction \'JMP A1\' to automate your walk.\n' +
+        '   A1 is line in code to be jumped to\n',
+        // #5
+        'Remember, to get a memory value from a register\n' +
+        'use eg. [4]',
+        // #6
+        'It\'s time for branching!\n' + 
+        'JMPZ A1 A2	jump to line A1 if A2 is zero\n' +
+        'JMPN A1 A2	jump to line A1 if A2 is negative',
+        // #7
+        'Elementary arithmetics..',
+        // #8
+        'You must have noticed that division was missing.\n' + 
+        'Implement it. Here\'s the last instruction:\n\n' + 
+        'CMP M1 A1 A2\n'+
+        'M1 stores the result of A1 > A2\n' +
+        'A1 > A2: 1, A1 = A2: 0, A1 < A2: -1',
+        // #9
+        'Ever heard of function calls?\nTry to be spacially modest with your code',
+        // #10
+        'The number just before the door indicates which\n'+
+        'loaded value to use.\n\n' +
+        'This calls for double dereference. If, for example\n'+
+        'the second register contains number 3 and the third\n'+
+        'register contains 54, then [[2]] evaluates to 54.',
+        // #11
+        'Every step you make increments the seventh register.\nThe key in this layer is the amount of steps you\ntill you hit a wall.',
+        // #12
+        'This is it: the last layer, the greatest challenge.\n',
+    ]
+
+}
+
+/*
+
+                    'wwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
+                    'wP...........................w',
+                    'wwwwwwwwwwwwwwwwwwwwwwwwwwww.w',
+                    'w..........................w.w',
+                    'w.wwwwwwwwwwwwwwwwwwwwwwww.w.w',
+                    'w.w......................w.w.w',
+                    'w.w.wwwwwwwwwwwwwwwwwwww.w.w.w',
+                    'w.w.w..................w.w.w.w',
+                    'w.w.w.wwwwwwwwwwwwwwww.w.w.w.w',
+                    'w.w.w.w..............w.w.w.w.w',
+                    'w.w.w.w.wwwwwwwwwwww.w.w.w.w.w',
+                    'w.w.w.w.wG...........w.w.w.w.w',
+                    'w.w.w.w.wwwwwwwwwwwwww.w.w.w.w',
+                    'w.w.w.w................w.w.w.w',
+                    'w.w.w.wwwwwwwwwwwwwwwwww.w.w.w',
+                    'w.w.w....................w.w.w',
+                    'w.w.wwwwwwwwwwwwwwwwwwwwww.w.w',
+                    'w.w........................w.w',
+                    'w.wwwwwwwwwwwwwwwwwwwwwwwwww.w',
+                    'w............................w',
+                    'wwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
+*/
